@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "Microspace.Controllers.AppsController",
+    "Method": "GetApps",
+    "RelativePath": "api/Apps",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Microspace.Controllers.AppsController",
+    "Method": "GetAppById",
+    "RelativePath": "api/Apps/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
