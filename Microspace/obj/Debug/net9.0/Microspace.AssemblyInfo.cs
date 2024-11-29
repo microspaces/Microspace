@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Microspace")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+560b276e19481debcee35e0fe4ea439e60f6c0fd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f49b3910c1a2a501c8ac2fd419633300241eee55")]
 [assembly: System.Reflection.AssemblyProductAttribute("Microspace")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Microspace")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

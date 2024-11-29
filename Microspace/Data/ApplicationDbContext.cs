@@ -25,7 +25,12 @@ namespace Microspace.Data
 
             // Configure Background entity
             modelBuilder.Entity<Background>()
-                .HasKey(b => new { b.Type, b.Value });
+                .HasKey(b => b.Id);
+
+            // Add unique constraint on Type and Value
+            modelBuilder.Entity<Background>()
+                .HasIndex(b => new { b.Type, b.Value })
+                .IsUnique();
 
             // Configure AppContainer entity
             modelBuilder.Entity<AppContainer>()
