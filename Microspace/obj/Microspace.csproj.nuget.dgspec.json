@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj": {}
+    "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj": {
+    "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj",
+        "projectUniqueName": "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj",
         "projectName": "Microspace",
-        "projectPath": "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj",
+        "projectPath": "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj",
         "packagesPath": "C:\\Users\\mikeb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\obj\\",
+        "outputPath": "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

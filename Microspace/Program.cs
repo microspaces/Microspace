@@ -31,6 +31,15 @@ else
     app.UseHsts();
 }
 
+// Seed the database
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    var seeder = new MicrospaceSeeder(context);
+    await seeder.SeedAsync();
+}
+
 app.UseHttpsRedirection();
 app.UseRouting();
 

@@ -592,4 +592,3 @@ c:\Users\mikeb\source\repos\Microspace\Microspace\bin\Debug\net9.0\Microsoft.Asp
 c:\Users\mikeb\source\repos\Microspace\Microspace\bin\Debug\net9.0\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\mikeb\source\repos\Microspace\Microspace\obj\Debug\net9.0\Microspace.sourcelink.json
 C:\Users\mikeb\source\repos\Microspace\Microspace\obj\Debug\net9.0\compressed\d96gctuyc2-5xz2orft1e.gz
-C:\Users\mikeb\source\repos\Microspace\Microspace\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
