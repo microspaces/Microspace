@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj": {}
+    "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj": {
+    "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj",
+        "projectUniqueName": "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj",
         "projectName": "Microspace",
-        "projectPath": "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj",
+        "projectPath": "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\Microspace.csproj",
         "packagesPath": "C:\\Users\\mikeb\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\obj\\",
+        "outputPath": "C:\\Users\\mikeb\\source\\repos\\Microspace\\Microspace\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,9 +42,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -95,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

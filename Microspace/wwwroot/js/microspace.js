@@ -188,6 +188,23 @@
                 ]
             };
         }
+
+        async updateApp(appId, updateData) {
+            try {
+                const response = await fetch(`/api/apps/${appId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updateData)
+                });
+                if (!response.ok) throw new Error('Failed to update app');
+                return await response.json();
+            } catch (error) {
+                console.error('Error updating app:', error);
+                throw error;
+            }
+        }
     }
 
     class Microspace {
@@ -200,6 +217,7 @@
             this.api = new MicrospaceApi(); // Initialize API service
             this.init();
             this.bindEvents();
+            this.activeEditModal = null;
         }
 
         async init() {
@@ -256,11 +274,25 @@
             // Create container
             const containerDiv = document.createElement('div');
             containerDiv.className = `container-${level}`;
+            containerDiv.setAttribute('data-app-id', app.id);
             
-            // Add container header
+            // Add container header with edit button
             const containerHeader = document.createElement('div');
             containerHeader.className = 'container-header';
-            containerHeader.textContent = app.name;
+            
+            const titleSpan = document.createElement('span');
+            titleSpan.textContent = app.name;
+            containerHeader.appendChild(titleSpan);
+            
+            const editButton = document.createElement('button');
+            editButton.className = 'edit-button';
+            editButton.innerHTML = '<i class="fas fa-edit"></i>';
+            editButton.onclick = (e) => {
+                e.stopPropagation();
+                this.showEditModal(app);
+            };
+            containerHeader.appendChild(editButton);
+            
             containerDiv.appendChild(containerHeader);
 
             // Create contained app
@@ -886,7 +918,6 @@
                 #${this.containerId} {
                     font-family: Arial, sans-serif;
                     padding: 20px;
-                    height: 400px;
                     padding-bottom: 80px;
                 }
 
@@ -1406,8 +1437,198 @@
                     border-radius: 4px;
                     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
                 }
+
+                .edit-button {
+                    background: none;
+                    border: none;
+                    color: #fff;
+                    cursor: pointer;
+                    padding: 5px;
+                    margin-left: 10px;
+                    opacity: 0.7;
+                    transition: opacity 0.2s;
+                    float: right;
+                }
+                
+                .edit-button:hover {
+                    opacity: 1;
+                }
+                
+                .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 1000;
+                }
+                
+                .edit-modal {
+                    background: #fff;
+                    border-radius: 8px;
+                    padding: 20px;
+                    width: 500px;
+                    max-width: 90%;
+                    color: #333;
+                }
+                
+                .modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+                
+                .modal-header h3 {
+                    margin: 0;
+                    color: #333;
+                }
+                
+                .close-modal {
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                    color: #666;
+                }
+                
+                .form-group {
+                    margin-bottom: 15px;
+                }
+                
+                .form-group label {
+                    display: block;
+                    margin-bottom: 5px;
+                    color: #333;
+                }
+                
+                .form-group input,
+                .form-group textarea {
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    background: #fff;
+                    color: #333;
+                }
+                
+                .form-group textarea {
+                    height: 100px;
+                    resize: vertical;
+                }
+                
+                .modal-footer {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 10px;
+                    margin-top: 20px;
+                }
+                
+                .modal-footer button {
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+                
+                .save-button {
+                    background: #007bff;
+                    color: #fff;
+                    border: none;
+                }
+                
+                .cancel-button {
+                    background: #6c757d;
+                    color: #fff;
+                    border: none;
+                }
             `;
             document.head.appendChild(styles);
+        }
+
+        showEditModal(app) {
+            // Create modal overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            
+            // Create modal content
+            const modal = document.createElement('div');
+            modal.className = 'edit-modal';
+            
+            modal.innerHTML = `
+                <div class="modal-header">
+                    <h3>Edit App</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="app-name">Name:</label>
+                        <input type="text" id="app-name" value="${app.name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="app-description">Description:</label>
+                        <textarea id="app-description">${app.description || ''}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="app-type">Type:</label>
+                        <input type="text" id="app-type" value="${app.type}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="save-button">Save</button>
+                    <button class="cancel-button">Cancel</button>
+                </div>
+            `;
+            
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+            
+            // Event handlers
+            const closeBtn = modal.querySelector('.close-modal');
+            const saveBtn = modal.querySelector('.save-button');
+            const cancelBtn = modal.querySelector('.cancel-button');
+            
+            closeBtn.onclick = () => this.closeEditModal(overlay);
+            cancelBtn.onclick = () => this.closeEditModal(overlay);
+            saveBtn.onclick = () => this.saveAppChanges(app, overlay);
+            
+            this.activeEditModal = overlay;
+        }
+
+        closeEditModal(overlay) {
+            if (overlay) {
+                document.body.removeChild(overlay);
+                this.activeEditModal = null;
+            }
+        }
+
+        async saveAppChanges(app, overlay) {
+            const nameInput = overlay.querySelector('#app-name');
+            const descriptionInput = overlay.querySelector('#app-description');
+            const typeInput = overlay.querySelector('#app-type');
+            
+            const updateData = {
+                ...app,
+                name: nameInput.value,
+                description: descriptionInput.value,
+                type: typeInput.value
+            };
+            
+            try {
+                await this.api.updateApp(app.id, updateData);
+                // Update the UI
+                const containerDiv = document.querySelector(`[data-app-id="${app.id}"]`);
+                if (containerDiv) {
+                    const titleSpan = containerDiv.querySelector('.container-header span');
+                    titleSpan.textContent = updateData.name;
+                }
+                this.closeEditModal(overlay);
+            } catch (error) {
+                alert('Failed to save changes. Please try again.');
+            }
         }
     }
 

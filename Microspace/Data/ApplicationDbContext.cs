@@ -14,6 +14,7 @@ namespace Microspace.Data
         public DbSet<App> Apps { get; set; }
         public DbSet<AppContainer> AppContainers { get; set; }
         public DbSet<Background> Backgrounds { get; set; }
+        public DbSet<UserPreference> UserPreferences { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,6 +36,14 @@ namespace Microspace.Data
             // Configure AppContainer entity
             modelBuilder.Entity<AppContainer>()
                 .HasKey(ac => new { ac.Name });
+
+            // Configure UserPreference entity
+            modelBuilder.Entity<UserPreference>()
+                .HasKey(u => u.Id);
+
+            modelBuilder.Entity<UserPreference>()
+                .HasIndex(u => u.UserId)
+                .IsUnique();
         }
     }
 }
